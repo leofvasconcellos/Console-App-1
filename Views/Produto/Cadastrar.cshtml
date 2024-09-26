@@ -1,0 +1,35 @@
+﻿<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Cadastrar Produto</title>
+</head>
+<body>
+    <h1>Cadastrar Produto</h1>
+
+    <form asp-action="Cadastrar" method="post">
+        <label for="Descricao">Descrição:</label>
+        <input type="text" id="Descricao" name="Descricao" required /><br />
+
+        <label for="ValorVenda">Valor de Venda:</label>
+        <input type="number" id="ValorVenda" name="ValorVenda" step="0.01" required /><br />
+
+        <label for="ValorCompra">Valor de Compra:</label>
+        <input type="number" id="ValorCompra" name="ValorCompra" step="0.01" required /><br />
+
+        <label for="Tipo">Tipo:</label>
+        <select id="Tipo" name="Tipo" required>
+            <option value="Final">Final</option>
+            <option value="Intermediario">Intermediário</option>
+            <option value="Consumo">Consumo</option>
+            <option value="MateriaPrima">Matéria-prima</option>
+        </select><br />
+
+        <label for="DataCriacao">Data de Criação:</label>
+        <input type="date" id="DataCriacao" name="DataCriacao" required /><br />
+
+        <input type="submit" value="Cadastrar" />
+    </form>
+
+    <a href="@Url.Action("Index")">Voltar para produtos</a>
+</body>
+</html>

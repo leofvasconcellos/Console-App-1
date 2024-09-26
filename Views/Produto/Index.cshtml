@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Produtos</title>
+</head>
+<body>
+    <h1>Lista de Produtos</h1>
+    <a href="@Url.Action("Cadastrar")">Cadastrar Novo Produto</a>
+
+    <h2>Filtros</h2>
+    <form method="get">
+        <label for="dataCriacao">Período de Criação:</label>
+        <select id="periodo" name="periodo">
+            <option value="">Todos</option>
+            <option value="01">Janeiro-Março</option>
+            <option value="02">Abril-Junho</option>
+            <option value="03">Julho-Setembro</option>
+            <option value="04">Outubro-Dezembro</option>
+        </select>
+
+        <label for="tipo">Tipo:</label>
+        <select id="tipo" name="tipo">
+            <option value="">Todos</option>
+            <option value="Final">Final</option>
+            <option value="Intermediario">Intermediário</option>
+            <option value="Consumo">Consumo</option>
+            <option value="MateriaPrima">Matéria-prima</option>
+        </select>
+
+        <input type="submit" value="Filtrar" />
+    </form>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Valor de Venda</th>
+                <th>Valor de Compra</th>
+                <th>Tipo</th>
+                <th>Data de Criação</th>
+                <th>Margem de Lucro (%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var produto in Model)
+            {
+                <tr>
+                    <td>@produto.Descricao</td>
+                    <td>@produto.ValorVenda</td>
+                    <td>@produto.ValorCompra</td>
+                    <td>@produto.Tipo</td>
+                    <td>@produto.DataCriacao.ToShortDateString()</td>
+                    <td>@((produto.ValorVenda - produto.ValorCompra) / produto.ValorCompra * 100)%</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h2>Produtos com Maior Margem de Lucro</h2>
+    <ul>
+        @foreach (var produto in ViewBag.ProdutosComMaiorMargem)
+        {
+            <li>@produto.Descricao - @((produto.ValorVenda - produto.ValorCompra) / produto.ValorCompra * 100)%</li>
+        }
+    </ul>
+
+    <h2>Produtos com Menor Margem de Lucro</h2>
+    <ul>
+        @foreach (var produto in ViewBag.ProdutosComMenorMargem)
+        {
+            <li>@produto.Descricao - @((produto.ValorVenda - produto.ValorCompra) / produto.ValorCompra * 100)%</li>
+        }
+    </ul>
+
+</body>
+</html>

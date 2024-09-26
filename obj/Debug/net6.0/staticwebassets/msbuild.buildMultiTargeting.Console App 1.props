@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Console App 1.props" />
+</Project>
